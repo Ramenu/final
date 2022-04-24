@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
-import { confirmLogin } from "../slices/loginSlice";
+import { confirmLogout } from "../slices/loginSlice";
 import Button from "react-bootstrap/Button";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -15,8 +15,9 @@ export const Logout = () => {
             <div className="logout-button">
                 <br/>
                 <Button variant="danger"
-                onClick={() => dispatch(confirmLogin({email: null, password: null, token: null, status: "Log out"}))}>
-                Logout</Button>
+                onClick={() => dispatch(confirmLogout())}>
+                Logout
+                </Button>
             </div>
         );
     }

@@ -22,9 +22,8 @@ const FilterInput = ({filter, setFilter}) => {
 
 
 export const UserList = () => {
-    console.log("User list rendered");
 
-    const users = useSelector((state) => state.users);
+    const users = useSelector((state) => state.users.data);
     const token = useSelector((state) => state.login.token);
     const [filter, setFilter] = useState("");
     
@@ -32,21 +31,23 @@ export const UserList = () => {
         return null;
     }
 
-    
+    console.log("User list rendered");
+    // Filter by email or if the filter input is empty,
+    // display all the users.
     return (
         <div className="user-list">
             <FilterInput filter={filter} setFilter={setFilter}/>
             <br/>
             <br/>
             <b><h1><u>List of Users</u></h1></b>
-            {users.filter((e) => e.Email === filter || filter === "").map(({Email, Image}) => 
+            {users.filter((e) => e.email === filter || filter === "").map(({email, avatar}) => 
                 <ul>
-                    <li><b>Email:</b> {Email}
-                    <img src={Image} width="50" height="50" alt="Profile"/></li>
+                    <li key={email}><b>Email:</b> {email}
+                    <img src={avatar} width="50" height="50" alt="Profile"/></li>
                 </ul>
             )}
             <Logout/>
-        </div> // add inactive/active status bar later?? idk
+        </div>
     );
 }
 
